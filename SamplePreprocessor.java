@@ -49,14 +49,12 @@ public class SamplePreprocessor {
 		 * Divide the data into triple((-))groups of three samples and retain only
 		 * complete triples.
 		 */
-		for (BigDecimal value : inputList) {
-			List<BigDecimal> triple = new ArrayList<>();
-			int index = inputList.indexOf(value);
-
-			while (triple.size() < 3 && index < inputList.size()) {
-				triple.add(inputList.get(index));
-				index++;
-			}
+		for (int i = 0; i < inputList.size(); i += 3) {
+		    List<BigDecimal> triple = new ArrayList<>();
+		    
+		    for (int j = i; j < i + 3 && j < inputList.size(); j++) {
+		        triple.add(inputList.get(j));
+		    }
 
 			if (triple.size() == 3) {
 				BigDecimal average = calculateAverage(triple);
